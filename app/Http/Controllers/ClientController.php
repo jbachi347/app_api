@@ -24,8 +24,6 @@ class ClientController extends ApiController
         //                     inner join projects on clients.id = projects.client_id
         //                     group by clients.id ');
 
-
-
         
         return $this->showAll($list);
     }
