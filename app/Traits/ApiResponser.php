@@ -21,18 +21,18 @@ trait ApiResponser {
 
 	protected function showFree($collection, $code = 200)
 	{
-		return $this->successResponse(['data' => $collection],$code);
+		return $this->successResponse(['data' => $collection],$code, JSON_NUMERIC_CHECK);
 	}
 
 	protected function showAll(Collection $collection, $code = 200)
 	{
-		return $this->successResponse(['data' => $collection],$code);
+		return $this->successResponse(['data' => $collection],$code, JSON_NUMERIC_CHECK);
 	}
 
 
 	protected function showOne(Model $instance, $code = 200)
 	{
-		return $this->successResponse(['data' => $instance],$code);
+		return $this->successResponse(['data' => $instance],$code, JSON_NUMERIC_CHECK);
 	}
 
 

@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
         protected $table = 'projects';
+        protected $casts = [ 
+                'amount' => 'double',
+                'payment' => 'double',
+                'due' => 'double',
+                'client_id' => 'integer' ];
         protected $fillable = ['client_id','name','description','amount','payment','due'];
 
         public function client()
