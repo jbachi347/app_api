@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('client', 'ClientController', ['except' => ['create', 'edit']]);
 Route::resource('project', 'ProjectController', ['except' => ['create', 'edit']]);
 
-
+Route::get('clients_projects', 'CustomQueryController@clients_projects');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

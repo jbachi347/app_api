@@ -28,6 +28,8 @@ class ClientController extends ApiController
         return $this->showAll($list);
     }
 
+
+
     public function store(Request $request)
     {
         $rules = [
