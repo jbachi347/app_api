@@ -18,4 +18,12 @@ class CustomQueryController extends ApiController
     }
 
 
+    public function clients_projects_show($client_id)
+    {
+        //Clientes con Proyectos
+        $list = Client::where('id',$client_id)->with('projects')->get();
+        return $this->showFree($list);
+    }
+
+
 }
