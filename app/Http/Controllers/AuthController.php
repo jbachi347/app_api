@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    
+
     public function signup(Request $request)
     {
         $request->validate([
@@ -23,8 +23,24 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
         $user->save();
+
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->token;
+        $token->expires_at = Carbon::now()->addWeeks(1);
+
+        $token->save();
         return response()->json([
-            'message' => 'Successfully created user!'], 201);
+            'access_token' => $tokenResult->accessToken,
+            'token_type'   => 'Bearer',
+            'expires_at'   => Carbon::parse(
+                $tokenResult->token->expires_at)
+                    ->toDateTimeString(),
+        ]);
+
+
+        // return response()->json([
+        //     'message' => 'Successfully created user!'], 201);
+
     }
     public function login(Request $request)
     {
