@@ -20,6 +20,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+
+Route::get('/me', function (Request $request) {
+    return (array) $request->user();
+})->middleware('auth:api');
+
+
+/*
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
@@ -36,6 +43,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('user', 'AuthController@user');
     });
 });
+*/
 
 
 

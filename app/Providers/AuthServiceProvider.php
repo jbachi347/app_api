@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
+use App\Firebase\Guard;
 use Laravel\Passport\Passport;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +27,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        Auth::viaRequest('firebase', function ($request) {
+            return app(Guard::class)->user($request);
+        });
+        
         $this->registerPolicies();
         Passport::routes();
 

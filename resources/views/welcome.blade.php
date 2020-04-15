@@ -62,6 +62,14 @@
                 margin-bottom: 30px;
             }
         </style>
+
+
+        <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+      </body>
+        
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -82,6 +90,7 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+                    <button onclick="signin()" >Test</button>
                 </div>
 
                 <div class="links">
@@ -97,4 +106,40 @@
             </div>
         </div>
     </body>
+
+
+    <script>
+
+
+        // Initialize Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyDT3pNl9SgWEUWJuL64MYfzQRbySth9FEk",
+            authDomain: "apprealone.firebaseapp.com",
+            databaseURL: "https://apprealone.firebaseio.com",
+            projectId: "apprealone",
+            storageBucket: "apprealone.appspot.com",
+            messagingSenderId: "8541888838",
+            appId: "1:8541888838:web:508c7ebdf1f60e306dc547",
+            measurementId: "G-RSL0070YGE"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          firebase.analytics();
+
+        async function signin() {
+            console.log(firebase)
+            console.log('signing in')
+
+            let creds = await firebase.auth().signInWithEmailAndPassword('info@jbachi.com', '123123')
+
+            console.log({ creds })
+            let token = await creds.user.getIdToken()
+            console.log({ token })
+            let headers = { Authorization: 'Bearer ' + token }
+            let me = await axios.get('/api/me', { headers })
+            console.log({ me })
+        }
+        </script>
+
+
 </html>
