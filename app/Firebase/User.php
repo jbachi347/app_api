@@ -41,6 +41,21 @@ class User implements Authenticatable
         return (string) $this->claims['sub'];
     }
 
+    public function getData()
+    {
+        $arr['iss'] = $this->claims['iss'];
+        $arr['aud'] = $this->claims['aud'];
+        $arr['auth_time'] = $this->claims['auth_time'];
+        $arr['user_id'] = $this->claims['user_id'];
+        $arr['sub'] = $this->claims['sub'];
+        $arr['iat'] = $this->claims['iat'];
+        $arr['exp'] = $this->claims['exp'];
+        $arr['email'] = $this->claims['email'];
+        $arr['email_verified'] = $this->claims['email_verified'];
+        $arr['firebase'] = $this->claims['firebase'];
+
+        return $arr;
+    }
     /**
      * Get the password for the user.
      *

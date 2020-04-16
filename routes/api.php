@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/me', function (Request $request) {
-    return (array) $request->user();
+    return (array) $request->user()->getData();
 })->middleware('auth:api');
 
 
